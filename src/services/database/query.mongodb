@@ -152,3 +152,214 @@ db.createCollection('user', {
 
 });
 
+db.book.insertMany([
+    {
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "category": [
+            {
+                "name": "Fiction",
+                "description": "A fictional work."
+            },
+            {
+                "name": "Classics",
+                "description": "Classic literature."
+            }
+        ],
+        "publisher": "Scribner",
+        "publication_date": ISODate("1925-04-10T00:00:00Z"),
+        "pages": 180,
+        "synopsis": "The story of the enigmatic Jay Gatsby and his passionate pursuit of the American Dream.",
+        "image": "https://example.com/great-gatsby.jpg"
+    },
+    {
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "category": [
+            {
+                "name": "Fiction",
+                "description": "A fictional work."
+            },
+            {
+                "name": "Classics",
+                "description": "Classic literature."
+            }
+        ],
+        "publisher": "J. B. Lippincott & Co.",
+        "publication_date": ISODate("1960-07-11T00:00:00Z"),
+        "pages": 281,
+        "synopsis": "The story of racial injustice in the American South during the 1930s, told through the eyes of a young girl.",
+        "image": "https://example.com/to-kill-a-mockingbird.jpg"
+    },
+    {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "category": [
+            {
+                "name": "Fantasy",
+                "description": "A genre of fiction that features magical elements and imaginary worlds."
+            }
+        ],
+        "publisher": "George Allen & Unwin",
+        "publication_date": ISODate("1937-09-21T00:00:00Z"),
+        "pages": 310,
+        "synopsis": "The adventure of Bilbo Baggins as he joins a group of dwarves on a quest to reclaim their homeland from a dragon.",
+        "image": "https://example.com/the-hobbit.jpg"
+    },
+    {
+        "title": "1984",
+        "author": "George Orwell",
+        "category": [
+            {
+                "name": "Science Fiction",
+                "description": "A genre of fiction that explores futuristic and dystopian themes."
+            },
+            {
+                "name": "Classics",
+                "description": "Classic literature."
+            }
+        ],
+        "publisher": "Secker & Warburg",
+        "publication_date": ISODate("1949-06-08T00:00:00Z"),
+        "pages": 328,
+        "synopsis": "A dystopian novel that explores themes of totalitarianism, surveillance, and thought control.",
+        "image": "https://example.com/1984.jpg"
+    },
+    {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "category": [
+            {
+                "name": "Fiction",
+                "description": "A fictional work."
+            },
+            {
+                "name": "Romance",
+                "description": "Stories of love and relationships."
+            },
+            {
+                "name": "Classics",
+                "description": "Classic literature."
+            }
+        ],
+        "publisher": "T. Egerton, Whitehall",
+        "publication_date": ISODate("1813-01-28T00:00:00Z"),
+        "pages": 432,
+        "synopsis": "A tale of love and manners in early 19th-century England, focusing on the headstrong Elizabeth Bennet and the enigmatic Mr. Darcy.",
+        "image": "https://example.com/pride-and-prejudice.jpg"
+    }
+]);
+
+db.author.insertMany([
+    {
+        "name": "F. Scott",
+        "last_name": "Fitzgerald",
+        "nationality": "American",
+        "birth_date": ISODate("1896-09-24T00:00:00Z"),
+        "death_date": ISODate("1940-12-21T00:00:00Z")
+    },
+    {
+        "name": "Harper",
+        "last_name": "Lee",
+        "nationality": "American",
+        "birth_date": ISODate("1926-04-28T00:00:00Z"),
+        "death_date": ISODate("2016-02-19T00:00:00Z")
+    },
+    {
+        "name": "J.R.R.",
+        "last_name": "Tolkien",
+        "nationality": "English",
+        "birth_date": ISODate("1892-01-03T00:00:00Z"),
+        "death_date": ISODate("1973-09-02T00:00:00Z")
+    },
+    {
+        "name": "George",
+        "last_name": "Orwell",
+        "nationality": "English",
+        "birth_date": ISODate("1903-06-25T00:00:00Z"),
+        "death_date": ISODate("1950-01-21T00:00:00Z")
+    },
+    {
+        "name": "Jane",
+        "last_name": "Austen",
+        "nationality": "English",
+        "birth_date": ISODate("1775-12-16T00:00:00Z"),
+        "death_date": ISODate("1817-07-18T00:00:00Z")
+    }
+]);
+
+db.loan.insertMany([
+    {
+        "book_name": "The Great Gatsby",
+        "user_email": "user1@example.com",
+        "loan_date": ISODate("2023-09-15T00:00:00Z"),
+        "return_date": ISODate("2023-09-30T00:00:00Z"),
+        "request_date": ISODate("2023-09-10T00:00:00Z")
+    },
+    {
+        "book_name": "To Kill a Mockingbird",
+        "user_email": "user2@example.com",
+        "loan_date": ISODate("2023-08-20T00:00:00Z"),
+        "return_date": ISODate("2023-09-10T00:00:00Z"),
+        "request_date": ISODate("2023-08-15T00:00:00Z")
+    },
+    {
+        "book_name": "The Hobbit",
+        "user_email": "user3@example.com",
+        "loan_date": ISODate("2023-09-01T00:00:00Z"),
+        "return_date": ISODate("2023-09-15T00:00:00Z"),
+        "request_date": ISODate("2023-08-25T00:00:00Z")
+    },
+    {
+        "book_name": "1984",
+        "user_email": "user4@example.com",
+        "loan_date": ISODate("2023-09-05T00:00:00Z"),
+        "return_date": ISODate("2023-09-20T00:00:00Z"),
+        "request_date": ISODate("2023-08-30T00:00:00Z")
+    },
+    {
+        "book_name": "Pride and Prejudice",
+        "user_email": "user5@example.com",
+        "loan_date": ISODate("2023-09-10T00:00:00Z"),
+        "return_date": ISODate("2023-09-25T00:00:00Z"),
+        "request_date": ISODate("2023-09-05T00:00:00Z")
+    }
+]);
+
+db.user.insertMany([
+    {
+        "name": "John",
+        "last_name": "Doe",
+        "email": "john.doe@example.com",
+        "password": "mysecurepassword",
+        "role": "customer"
+    },
+    {
+        "name": "Jane",
+        "last_name": "Smith",
+        "email": "jane.smith@example.com",
+        "password": "anotherpassword",
+        "role": "customer"
+    },
+    {
+        "name": "Michael",
+        "last_name": "Johnson",
+        "email": "michael.johnson@example.com",
+        "password": "secretpassword123",
+        "role": "employee"
+    },
+    {
+        "name": "Admin",
+        "last_name": "Adminson",
+        "email": "admin@example.com",
+        "password": "adminpassword",
+        "role": "admin"
+    },
+    {
+        "name": "Sarah",
+        "last_name": "Brown",
+        "email": "sarah.brown@example.com",
+        "password": "userpassword",
+        "role": "customer"
+    }
+]);
