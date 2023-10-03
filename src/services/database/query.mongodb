@@ -331,35 +331,35 @@ db.user.insertMany([
         "name": "John",
         "last_name": "Doe",
         "email": "john.doe@example.com",
-        "password": "mysecurepassword",
+        "password": "$2a$10$xY5OGpP2dxev/jo72XZTW.5qJn9JqUd9o4PkO8MIMBhigwB631Bpy",
         "role": "customer"
     },
     {
         "name": "Jane",
         "last_name": "Smith",
         "email": "jane.smith@example.com",
-        "password": "anotherpassword",
+        "password": "$2a$10$nZqhk1ahjNn4Ja5R4dHgZu5Kvt3TtmfNN6VgQey4kI6GsI6223YwC",
         "role": "customer"
     },
     {
         "name": "Michael",
         "last_name": "Johnson",
         "email": "michael.johnson@example.com",
-        "password": "secretpassword123",
+        "password": "$2a$10$fhVsvjWpOcUCGoTCIZMU7utbzUINPmdRMAKAuOZK6maN.XFz0YwnW",
         "role": "employee"
     },
     {
         "name": "Admin",
         "last_name": "Adminson",
         "email": "admin@example.com",
-        "password": "adminpassword",
+        "password": "$2a$10$Mn5waZx24V61XMwf49Ol0eJ78X8CPDgugCAsatj1QB/hTdYkbv.oS",
         "role": "admin"
     },
     {
         "name": "Sarah",
         "last_name": "Brown",
         "email": "sarah.brown@example.com",
-        "password": "userpassword",
+        "password": "$2a$10$WgHWtDtxmnrp2b0p/HgxW.J6x4mCXHA8ke.AO5bzTeHQ5L21WTq8q",
         "role": "customer"
     }
 ]);
