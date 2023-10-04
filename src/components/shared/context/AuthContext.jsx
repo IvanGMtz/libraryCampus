@@ -3,6 +3,7 @@ import {
   registerRequest,
   loginRequest,
   verifyTokenRequest,
+  registerRequestEmployee
 } from "../../../request/auth";
 import Cookies from "js-cookie";
 
@@ -27,6 +28,15 @@ export const AuthProvider = ({ children }) => {
       const res = await registerRequest(user);
       setUser(res.data);
       setisAuthenticated(true);
+    } catch (error) {
+      setErrors(error.response.data.message);
+    }
+  };
+
+  const signupEmp = async (user) => {
+    try {
+      const res = await registerRequestEmployee(user);
+      alert(res.data.message)
     } catch (error) {
       setErrors(error.response.data.message);
     }
@@ -84,6 +94,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         signup,
+        signupEmp,
         signin,
         logout,
         user,
