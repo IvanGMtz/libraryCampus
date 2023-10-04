@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data);
       setisAuthenticated(true);
       if (res.data.role === "admin") {
-        setisEmployee(false);
+        setisEmployee(true);
         setisAdmin(true);
       } else if (res.data.role === "employee") {
         setisEmployee(true);
