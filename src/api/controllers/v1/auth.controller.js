@@ -56,7 +56,8 @@ export const register = async (req, res) => {
                 id: newUser.id,
                 name: newUser.name,
                 email: newUser.email,
-                createdAt: newUser.createdAt
+                createdAt: newUser.createdAt,
+                role: newUser.role,
         }]  });
     } catch (error) {
         res.status(500).json({ message: "Error adding user", error: error.message });
@@ -150,6 +151,7 @@ export const login = async (req, res)=>{
             id: userFound._id,
             username: userFound.name,
             email: userFound.email,
+            role: userFound.role,
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -182,6 +184,7 @@ export const verifyToken = async (req, res) => {
         id: userFound._id,
         username: userFound.name,
         email: userFound.email,
+        role: userFound.role
       });
     });
   };
