@@ -49,7 +49,10 @@ export const register = async (req, res) => {
         newUser.createdAt = new Date();
 
         const token = await createAccessToken({id: newUser.id})
-        res.cookie("token", token);
+        res.cookie("token", token, {
+            secure: true,
+            sameSite: "None",
+        });
 
         res.status(201).json({
             message: "User added successfully", UserInfo: [{
@@ -100,9 +103,6 @@ export const registerEmployee = async (req, res) => {
         newEmployee.id = result.insertedId;
         newEmployee.createdAt = new Date();
 
-        const token = await createAccessToken({id: newEmployee.id})
-        res.cookie("token", token);
-
         res.status(201).json({
             message: "Employee added successfully", EmployeeInfo: [{
                 id: newEmployee.id,
@@ -145,7 +145,10 @@ export const login = async (req, res)=>{
             username: userFound.username,
         });
 
-        res.cookie("token", token);
+        res.cookie("token", token, {
+            secure: true,
+            sameSite: "None",
+        });
 
         res.json({
             id: userFound._id,
@@ -160,7 +163,9 @@ export const login = async (req, res)=>{
 
 export const logout = async (req, res)=> {
     res.cookie('token', '', {
-        expires: new Date(0)
+        expires: new Date(0),
+        sameSite: 'None',
+        secure: true, 
     })
     return res.sendStatus(200);
 }
