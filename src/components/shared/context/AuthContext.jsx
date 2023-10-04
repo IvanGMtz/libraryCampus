@@ -20,6 +20,8 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setisAuthenticated] = useState(false);
+  const [isEmployee, setisEmployee] = useState(false);
+  const [isAdmin, setisAdmin] = useState(false);
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,6 +49,16 @@ export const AuthProvider = ({ children }) => {
       const res = await loginRequest(user);
       setUser(res.data);
       setisAuthenticated(true);
+      if (res.data.role === "admin") {
+        setisEmployee(false);
+        setisAdmin(true);
+      } else if (res.data.role === "employee") {
+        setisEmployee(true);
+        setisAdmin(false);
+      } else {
+        setisEmployee(false);
+        setisAdmin(false);
+      };
     } catch (error) {
       setErrors(error.response.data.message);
     }
@@ -99,6 +111,8 @@ export const AuthProvider = ({ children }) => {
         logout,
         user,
         isAuthenticated,
+        isEmployee,
+        isAdmin,
         errors,
         loading,
       }}
