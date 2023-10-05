@@ -11,14 +11,14 @@ import { auth } from '../middlewares/validateToken.js';
 const appBook = Router();
 
 
-appBook.get("/", getBooks);
+appBook.get("/", auth, getBooks);
 
-appBook.post("/", createBook);
+appBook.post("/", auth, createBook);
 
-appBook.get("/:title", getBook);
+appBook.get("/:title", auth, getBook);
 
-appBook.put("/:id", updateBook);
+appBook.put("/:id", auth, updateBook);
 
-appBook.delete("/:id", deleteBook);
+appBook.delete("/:id", auth, deleteBook);
 
 export default appBook;

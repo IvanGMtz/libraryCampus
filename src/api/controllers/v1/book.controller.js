@@ -23,7 +23,7 @@ export const createBook = async (req, res) => {
             body('publisher').isString().run(req),
             body('pages').isNumeric().run(req),
             body('synopsis').isString().run(req),
-            body('image').isString().run(req),
+            body('stock').isNumeric().run(req),
             body('publication_date').isISO8601().toDate().run(req)
         ]);
 
@@ -39,7 +39,7 @@ export const createBook = async (req, res) => {
             publisher: req.body.publisher,
             pages: req.body.pages,
             synopsis: req.body.synopsis,
-            image: req.body.image,
+            stock: req.body.stock,
             publication_date: new Date(req.body.publication_date),
         }
 
@@ -57,7 +57,7 @@ export const createBook = async (req, res) => {
                 publisher: newBook.publisher,
                 pages: newBook.pages,
                 synopsis: newBook.synopsis,
-                image: newBook.image,
+                stock: newBook.stock,
                 publication_date: newBook.publication_date,
                 createdAt: newBook.createdAt
             }]
@@ -88,7 +88,7 @@ export const updateBook = async (req, res) => {
             body('publisher').isString().run(req),
             body('pages').isNumeric().run(req),
             body('synopsis').isString().run(req),
-            body('image').isString().run(req),
+            body('stock').isNumeric().run(req),
             body('publication_date').isISO8601().toDate().run(req)
         ]);
 
@@ -104,7 +104,7 @@ export const updateBook = async (req, res) => {
             publisher: req.body.publisher,
             pages: req.body.pages,
             synopsis: req.body.synopsis,
-            image: req.body.image,
+            stock: req.body.stock,
             publication_date: new Date(req.body.publication_date),
         };
         const result = await collection.updateOne(
@@ -125,7 +125,7 @@ export const updateBook = async (req, res) => {
                 publisher: updatedBook.publisher,
                 pages: updatedBook.pages,
                 synopsis: updatedBook.synopsis,
-                image: updatedBook.image,
+                stock: updatedBook.stock,
                 publication_date: updatedBook.publication_date,
                 createdAt: updatedBook.createdAt
             }]
