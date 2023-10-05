@@ -88,7 +88,7 @@ db.createCollection('loan', {
     validator: {
         $jsonSchema: {
             "bsonType": "object",
-            "required": ["book_name", "user_email", "loan_date", "return_date"],
+            "required": ["book_name", "user_email", "request_date", "pickup_date"],
             "properties": {
                 "book_name": {
                     "bsonType": "string",
@@ -109,11 +109,14 @@ db.createCollection('loan', {
                 "request_date": {
                     "bsonType": "date",
                     "description": "The date when the loan request was made."
+                },
+                "pickup_date": {
+                    "bsonType": "date",
+                    "description": "The date when the user will pick up the book."
                 }
             }
         }
     }
-
 });
 
 db.createCollection('user', {
@@ -257,38 +260,27 @@ db.author.insertMany([
 db.loan.insertMany([
     {
         "book_name": "The Great Gatsby",
-        "user_email": "user1@example.com",
-        "loan_date": ISODate("2023-09-15T00:00:00Z"),
-        "return_date": ISODate("2023-09-30T00:00:00Z"),
-        "request_date": ISODate("2023-09-10T00:00:00Z")
+        "user_email": "john.doe@example.com",
+        "request_date": ISODate(),
+        "pickup_date": ISODate("2023-10-15")
     },
     {
         "book_name": "To Kill a Mockingbird",
-        "user_email": "user2@example.com",
-        "loan_date": ISODate("2023-08-20T00:00:00Z"),
-        "return_date": ISODate("2023-09-10T00:00:00Z"),
-        "request_date": ISODate("2023-08-15T00:00:00Z")
-    },
-    {
-        "book_name": "The Hobbit",
-        "user_email": "user3@example.com",
-        "loan_date": ISODate("2023-09-01T00:00:00Z"),
-        "return_date": ISODate("2023-09-15T00:00:00Z"),
-        "request_date": ISODate("2023-08-25T00:00:00Z")
+        "user_email": "jane.smith@example.com",
+        "request_date": ISODate(),
+        "pickup_date": ISODate("2023-10-15")
     },
     {
         "book_name": "1984",
-        "user_email": "user4@example.com",
-        "loan_date": ISODate("2023-09-05T00:00:00Z"),
-        "return_date": ISODate("2023-09-20T00:00:00Z"),
-        "request_date": ISODate("2023-08-30T00:00:00Z")
+        "user_email": "michael.johnson@example.com",
+        "request_date": ISODate(),
+        "pickup_date": ISODate("2023-10-15")
     },
     {
-        "book_name": "Pride and Prejudice",
-        "user_email": "user5@example.com",
-        "loan_date": ISODate("2023-09-10T00:00:00Z"),
-        "return_date": ISODate("2023-09-25T00:00:00Z"),
-        "request_date": ISODate("2023-09-05T00:00:00Z")
+        "book_name": "The Hobbit",
+        "user_email": "sarah.brown@example.com",
+        "request_date": ISODate(),
+        "pickup_date": ISODate("2023-10-18")
     }
 ]);
 
