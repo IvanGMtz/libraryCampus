@@ -94,6 +94,16 @@ export const AuthProvider = ({ children }) => {
         setisAuthenticated(true);
         setUser(res.data);
         setLoading(false);
+        if (res.data.role === "admin") {
+          setisEmployee(true);
+          setisAdmin(true);
+        } else if (res.data.role === "employee") {
+          setisEmployee(true);
+          setisAdmin(false);
+        } else {
+          setisEmployee(false);
+          setisAdmin(false);
+        };
       } catch (error) {
         setisAuthenticated(false);
         setLoading(false);
