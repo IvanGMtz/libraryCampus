@@ -2,6 +2,8 @@ import axios from "./axios";
 
 export const getBooksRequest = async () => axios.get("/book");
 
+export const getBooksStockRequest = async () => axios.get("/book/stock");
+
 export const createBookRequest = async (book) => axios.post("/book", book);
 
 export const updateBookRequest = async (book) =>
