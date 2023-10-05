@@ -12,6 +12,8 @@ import routes from "./routes/index.js";
 import routesadmin from "./routes/admin.js";
 import routesemployee from "./routes/employee.js";
 import Loader from "./common/Loader";
+import { BookProvider } from "./shared/context/BookContext";
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -25,6 +27,7 @@ function App() {
   ) : (
     <>
       <AuthProvider>
+        <BookProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -79,6 +82,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        </BookProvider>
       </AuthProvider>
     </>
   );
