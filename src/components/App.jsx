@@ -13,7 +13,7 @@ import routesadmin from "./routes/admin.js";
 import routesemployee from "./routes/employee.js";
 import Loader from "./common/Loader";
 import { BookProvider } from "./shared/context/BookContext";
-
+import { LoanProvider } from "./shared/context/LoanContext";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -28,60 +28,62 @@ function App() {
     <>
       <AuthProvider>
         <BookProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<SignIn />} />
-            <Route path="/register" element={<SignUp />} />
-            <Route path="*" element={<Error404 />} />
+          <LoanProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<SignIn />} />
+                <Route path="/register" element={<SignUp />} />
+                <Route path="*" element={<Error404 />} />
 
-            <Route element={<ProtectedRouted />}>
-              <Route element={<HomePage />}>
-                {routes.map(({ path, component: Component }) => (
-                  <Route
-                    path={path}
-                    key={path}
-                    element={
-                      <Suspense fallback={<Loader />}>
-                        <Component />
-                      </Suspense>
-                    }
-                  />
-                ))}
-              </Route>
-            </Route>
-            <Route element={<ProtectedRoutedEmployee />}>
-              <Route element={<HomePage />}>
-                {routesemployee.map(({ path, component: Component }) => (
-                  <Route
-                    path={path}
-                    key={path}
-                    element={
-                      <Suspense fallback={<Loader />}>
-                        <Component />
-                      </Suspense>
-                    }
-                  />
-                ))}
-              </Route>
-            </Route>
-            <Route element={<ProtectedRoutedAdmin />}>
-              <Route element={<HomePage />}>
-                {routesadmin.map(({ path, component: Component }) => (
-                  <Route
-                    path={path}
-                    key={path}
-                    element={
-                      <Suspense fallback={<Loader />}>
-                        <Component />
-                      </Suspense>
-                    }
-                  />
-                ))}
-              </Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
+                <Route element={<ProtectedRouted />}>
+                  <Route element={<HomePage />}>
+                    {routes.map(({ path, component: Component }) => (
+                      <Route
+                        path={path}
+                        key={path}
+                        element={
+                          <Suspense fallback={<Loader />}>
+                            <Component />
+                          </Suspense>
+                        }
+                      />
+                    ))}
+                  </Route>
+                </Route>
+                <Route element={<ProtectedRoutedEmployee />}>
+                  <Route element={<HomePage />}>
+                    {routesemployee.map(({ path, component: Component }) => (
+                      <Route
+                        path={path}
+                        key={path}
+                        element={
+                          <Suspense fallback={<Loader />}>
+                            <Component />
+                          </Suspense>
+                        }
+                      />
+                    ))}
+                  </Route>
+                </Route>
+                <Route element={<ProtectedRoutedAdmin />}>
+                  <Route element={<HomePage />}>
+                    {routesadmin.map(({ path, component: Component }) => (
+                      <Route
+                        path={path}
+                        key={path}
+                        element={
+                          <Suspense fallback={<Loader />}>
+                            <Component />
+                          </Suspense>
+                        }
+                      />
+                    ))}
+                  </Route>
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </LoanProvider>
         </BookProvider>
       </AuthProvider>
     </>
