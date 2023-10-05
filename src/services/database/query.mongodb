@@ -3,7 +3,7 @@ db.createCollection('book', {
     validator: {
         $jsonSchema: {
             "bsonType": "object",
-            "required": ["title", "author", "category", "publisher", "publication_date", "pages", "synopsis", "image"],
+            "required": ["title", "author", "category", "publisher", "publication_date", "pages", "synopsis", "stock"],
             "properties": {
                 "title": {
                     "bsonType": "string",
@@ -18,15 +18,11 @@ db.createCollection('book', {
                     "description": "Categories associated with the book.",
                     "items": {
                         "bsonType": "object",
-                        "required": ["name", "description"],
+                        "required": ["name"],
                         "properties": {
                             "name": {
                                 "bsonType": "string",
                                 "description": "The name of the category."
-                            },
-                            "description": {
-                                "bsonType": "string",
-                                "description": "A description of the category."
                             }
                         }
                     }
@@ -47,9 +43,9 @@ db.createCollection('book', {
                     "bsonType": "string",
                     "description": "A brief synopsis of the book."
                 },
-                "image": {
-                    "bsonType": "string",
-                    "description": "URL to the book's cover image."
+                "stock": {
+                    "bsonType": "int",
+                    "description": "The stock quantity of the book."
                 }
             }
         }
@@ -157,96 +153,66 @@ db.book.insertMany([
         "title": "The Great Gatsby",
         "author": "F. Scott Fitzgerald",
         "category": [
-            {
-                "name": "Fiction",
-                "description": "A fictional work."
-            },
-            {
-                "name": "Classics",
-                "description": "Classic literature."
-            }
+            { "name": "Classic Fiction" },
+            { "name": "American Literature" }
         ],
         "publisher": "Scribner",
-        "publication_date": ISODate("1925-04-10T00:00:00Z"),
+        "publication_date": ISODate("1925-04-10"),
         "pages": 180,
-        "synopsis": "The story of the enigmatic Jay Gatsby and his passionate pursuit of the American Dream.",
-        "image": "https://example.com/great-gatsby.jpg"
+        "synopsis": "A story of the decadent and disillusioned society of the Roaring Twenties.",
+        "stock": 100
     },
     {
         "title": "To Kill a Mockingbird",
         "author": "Harper Lee",
         "category": [
-            {
-                "name": "Fiction",
-                "description": "A fictional work."
-            },
-            {
-                "name": "Classics",
-                "description": "Classic literature."
-            }
+            { "name": "Classic Fiction" },
+            { "name": "Southern Literature" }
         ],
-        "publisher": "J. B. Lippincott & Co.",
-        "publication_date": ISODate("1960-07-11T00:00:00Z"),
+        "publisher": "J.B. Lippincott & Co.",
+        "publication_date": ISODate("1960-07-11"),
         "pages": 281,
-        "synopsis": "The story of racial injustice in the American South during the 1930s, told through the eyes of a young girl.",
-        "image": "https://example.com/to-kill-a-mockingbird.jpg"
-    },
-    {
-        "title": "The Hobbit",
-        "author": "J.R.R. Tolkien",
-        "category": [
-            {
-                "name": "Fantasy",
-                "description": "A genre of fiction that features magical elements and imaginary worlds."
-            }
-        ],
-        "publisher": "George Allen & Unwin",
-        "publication_date": ISODate("1937-09-21T00:00:00Z"),
-        "pages": 310,
-        "synopsis": "The adventure of Bilbo Baggins as he joins a group of dwarves on a quest to reclaim their homeland from a dragon.",
-        "image": "https://example.com/the-hobbit.jpg"
+        "synopsis": "A novel that explores themes of racial injustice and moral growth in the American South.",
+        "stock": 75
     },
     {
         "title": "1984",
         "author": "George Orwell",
         "category": [
-            {
-                "name": "Science Fiction",
-                "description": "A genre of fiction that explores futuristic and dystopian themes."
-            },
-            {
-                "name": "Classics",
-                "description": "Classic literature."
-            }
+            { "name": "Dystopian Fiction" },
+            { "name": "Political Fiction" }
         ],
         "publisher": "Secker & Warburg",
-        "publication_date": ISODate("1949-06-08T00:00:00Z"),
+        "publication_date": ISODate("1949-06-08"),
         "pages": 328,
-        "synopsis": "A dystopian novel that explores themes of totalitarianism, surveillance, and thought control.",
-        "image": "https://example.com/1984.jpg"
+        "synopsis": "A dystopian novel that portrays a totalitarian regime's surveillance and control of its citizens.",
+        "stock": 120
+    },
+    {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "category": [
+            { "name": "Fantasy Fiction" },
+            { "name": "Adventure" }
+        ],
+        "publisher": "Allen & Unwin",
+        "publication_date": ISODate("1937-09-21"),
+        "pages": 310,
+        "synopsis": "The adventure of Bilbo Baggins, a hobbit, who sets out on a journey to reclaim treasure guarded by a dragon.",
+        "stock": 90
     },
     {
         "title": "Pride and Prejudice",
         "author": "Jane Austen",
         "category": [
-            {
-                "name": "Fiction",
-                "description": "A fictional work."
-            },
-            {
-                "name": "Romance",
-                "description": "Stories of love and relationships."
-            },
-            {
-                "name": "Classics",
-                "description": "Classic literature."
-            }
+            { "name": "Classic Fiction" },
+            { "name": "Romantic Fiction" }
         ],
         "publisher": "T. Egerton, Whitehall",
-        "publication_date": ISODate("1813-01-28T00:00:00Z"),
+        "publication_date": ISODate("1813-01-28"),
         "pages": 432,
-        "synopsis": "A tale of love and manners in early 19th-century England, focusing on the headstrong Elizabeth Bennet and the enigmatic Mr. Darcy.",
-        "image": "https://example.com/pride-and-prejudice.jpg"
+        "synopsis": "A romantic novel that explores themes of love, class, and society in 19th-century England.",
+        "stock": 85
     }
 ]);
 
