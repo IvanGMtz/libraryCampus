@@ -14,6 +14,15 @@ export const getBooks = async (req, res) => {
     }
 };
 
+export const getBooksWithStock = async (req, res) => {
+    try {
+        const Books = await collection.find({ stock: { $gt: 0 } }).sort({ stock: -1 }).toArray();
+        res.json(Books);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
 export const createBook = async (req, res) => {
     try {
         await Promise.all([
