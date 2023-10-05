@@ -1,0 +1,323 @@
+use("db_library");
+db.createCollection('book', {
+    validator: {
+        $jsonSchema: {
+            "bsonType": "object",
+            "required": ["title", "author", "category", "publisher", "publication_date", "pages", "synopsis", "stock"],
+            "properties": {
+                "title": {
+                    "bsonType": "string",
+                    "description": "The title of the book."
+                },
+                "author": {
+                    "bsonType": "string",
+                    "description": "The author of the book."
+                },
+                "category": {
+                    "bsonType": "array",
+                    "description": "Categories associated with the book.",
+                    "items": {
+                        "bsonType": "object",
+                        "required": ["name"],
+                        "properties": {
+                            "name": {
+                                "bsonType": "string",
+                                "description": "The name of the category."
+                            }
+                        }
+                    }
+                },
+                "publisher": {
+                    "bsonType": "string",
+                    "description": "The publisher of the book."
+                },
+                "publication_date": {
+                    "bsonType": "date",
+                    "description": "The publication date of the book."
+                },
+                "pages": {
+                    "bsonType": "int",
+                    "description": "The number of pages in the book."
+                },
+                "synopsis": {
+                    "bsonType": "string",
+                    "description": "A brief synopsis of the book."
+                },
+                "stock": {
+                    "bsonType": "int",
+                    "description": "The stock quantity of the book."
+                }
+            }
+        }
+    }
+});
+
+db.createCollection('author', {
+    validator: {
+        $jsonSchema: {
+            "bsonType": "object",
+            "required": ["name", "last_name", "nationality", "birth_date", "death_date"],
+            "properties": {
+                "name": {
+                    "bsonType": "string",
+                    "description": "The author's first name."
+                },
+                "last_name": {
+                    "bsonType": "string",
+                    "description": "The author's last name."
+                },
+                "nationality": {
+                    "bsonType": "string",
+                    "description": "The author's nationality."
+                },
+                "birth_date": {
+                    "bsonType": "date",
+                    "description": "The author's date of birth."
+                },
+                "death_date": {
+                    "bsonType": "date",
+                    "description": "The author's date of death."
+                }
+            }
+        }
+    }
+
+});
+
+db.createCollection('loan', {
+    validator: {
+        $jsonSchema: {
+            "bsonType": "object",
+            "required": ["book_name", "user_email", "request_date", "pickup_date"],
+            "properties": {
+                "book_name": {
+                    "bsonType": "string",
+                    "description": "The name of the borrowed book."
+                },
+                "user_email": {
+                    "bsonType": "string",
+                    "description": "The email of the user who borrowed the book."
+                },
+                "loan_date": {
+                    "bsonType": "date",
+                    "description": "The date the book was borrowed."
+                },
+                "return_date": {
+                    "bsonType": "date",
+                    "description": "The expected return date of the book."
+                },
+                "request_date": {
+                    "bsonType": "date",
+                    "description": "The date when the loan request was made."
+                },
+                "pickup_date": {
+                    "bsonType": "date",
+                    "description": "The date when the user will pick up the book."
+                }
+            }
+        }
+    }
+});
+
+db.createCollection('user', {
+    validator: {
+        $jsonSchema: {
+            "bsonType": "object",
+            "required": ["name", "last_name", "email", "password", "role"],
+            "properties": {
+                "name": {
+                    "bsonType": "string",
+                    "description": "The user's first name."
+                },
+                "last_name": {
+                    "bsonType": "string",
+                    "description": "The user's last name."
+                },
+                "email": {
+                    "bsonType": "string",
+                    "description": "The user's email address."
+                },
+                "password": {
+                    "bsonType": "string",
+                    "description": "The user's password."
+                },
+                "role": {
+                    "bsonType": "string",
+                    "description": "The user's role (e.g., 'customer', 'admin')."
+                }
+            }
+        }
+    }
+
+});
+
+db.book.insertMany([
+    {
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "category": [
+            { "name": "Classic Fiction" },
+            { "name": "American Literature" }
+        ],
+        "publisher": "Scribner",
+        "publication_date": ISODate("1925-04-10"),
+        "pages": 180,
+        "synopsis": "A story of the decadent and disillusioned society of the Roaring Twenties.",
+        "stock": 100
+    },
+    {
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "category": [
+            { "name": "Classic Fiction" },
+            { "name": "Southern Literature" }
+        ],
+        "publisher": "J.B. Lippincott & Co.",
+        "publication_date": ISODate("1960-07-11"),
+        "pages": 281,
+        "synopsis": "A novel that explores themes of racial injustice and moral growth in the American South.",
+        "stock": 75
+    },
+    {
+        "title": "1984",
+        "author": "George Orwell",
+        "category": [
+            { "name": "Dystopian Fiction" },
+            { "name": "Political Fiction" }
+        ],
+        "publisher": "Secker & Warburg",
+        "publication_date": ISODate("1949-06-08"),
+        "pages": 328,
+        "synopsis": "A dystopian novel that portrays a totalitarian regime's surveillance and control of its citizens.",
+        "stock": 120
+    },
+    {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "category": [
+            { "name": "Fantasy Fiction" },
+            { "name": "Adventure" }
+        ],
+        "publisher": "Allen & Unwin",
+        "publication_date": ISODate("1937-09-21"),
+        "pages": 310,
+        "synopsis": "The adventure of Bilbo Baggins, a hobbit, who sets out on a journey to reclaim treasure guarded by a dragon.",
+        "stock": 90
+    },
+    {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "category": [
+            { "name": "Classic Fiction" },
+            { "name": "Romantic Fiction" }
+        ],
+        "publisher": "T. Egerton, Whitehall",
+        "publication_date": ISODate("1813-01-28"),
+        "pages": 432,
+        "synopsis": "A romantic novel that explores themes of love, class, and society in 19th-century England.",
+        "stock": 85
+    }
+]);
+
+db.author.insertMany([
+    {
+        "name": "F. Scott",
+        "last_name": "Fitzgerald",
+        "nationality": "American",
+        "birth_date": ISODate("1896-09-24T00:00:00Z"),
+        "death_date": ISODate("1940-12-21T00:00:00Z")
+    },
+    {
+        "name": "Harper",
+        "last_name": "Lee",
+        "nationality": "American",
+        "birth_date": ISODate("1926-04-28T00:00:00Z"),
+        "death_date": ISODate("2016-02-19T00:00:00Z")
+    },
+    {
+        "name": "J.R.R.",
+        "last_name": "Tolkien",
+        "nationality": "English",
+        "birth_date": ISODate("1892-01-03T00:00:00Z"),
+        "death_date": ISODate("1973-09-02T00:00:00Z")
+    },
+    {
+        "name": "George",
+        "last_name": "Orwell",
+        "nationality": "English",
+        "birth_date": ISODate("1903-06-25T00:00:00Z"),
+        "death_date": ISODate("1950-01-21T00:00:00Z")
+    },
+    {
+        "name": "Jane",
+        "last_name": "Austen",
+        "nationality": "English",
+        "birth_date": ISODate("1775-12-16T00:00:00Z"),
+        "death_date": ISODate("1817-07-18T00:00:00Z")
+    }
+]);
+
+db.loan.insertMany([
+    {
+        "book_name": "The Great Gatsby",
+        "user_email": "john.doe@example.com",
+        "request_date": ISODate(),
+        "pickup_date": ISODate("2023-10-15")
+    },
+    {
+        "book_name": "To Kill a Mockingbird",
+        "user_email": "jane.smith@example.com",
+        "request_date": ISODate(),
+        "pickup_date": ISODate("2023-10-15")
+    },
+    {
+        "book_name": "1984",
+        "user_email": "michael.johnson@example.com",
+        "request_date": ISODate(),
+        "pickup_date": ISODate("2023-10-15")
+    },
+    {
+        "book_name": "The Hobbit",
+        "user_email": "sarah.brown@example.com",
+        "request_date": ISODate(),
+        "pickup_date": ISODate("2023-10-18")
+    }
+]);
+
+db.user.insertMany([
+    {
+        "name": "John",
+        "last_name": "Doe",
+        "email": "john.doe@example.com",
+        "password": "$2a$10$xY5OGpP2dxev/jo72XZTW.5qJn9JqUd9o4PkO8MIMBhigwB631Bpy",
+        "role": "customer"
+    },
+    {
+        "name": "Jane",
+        "last_name": "Smith",
+        "email": "jane.smith@example.com",
+        "password": "$2a$10$nZqhk1ahjNn4Ja5R4dHgZu5Kvt3TtmfNN6VgQey4kI6GsI6223YwC",
+        "role": "customer"
+    },
+    {
+        "name": "Michael",
+        "last_name": "Johnson",
+        "email": "michael.johnson@example.com",
+        "password": "$2a$10$fhVsvjWpOcUCGoTCIZMU7utbzUINPmdRMAKAuOZK6maN.XFz0YwnW",
+        "role": "employee"
+    },
+    {
+        "name": "Admin",
+        "last_name": "Adminson",
+        "email": "admin@example.com",
+        "password": "$2a$10$Mn5waZx24V61XMwf49Ol0eJ78X8CPDgugCAsatj1QB/hTdYkbv.oS",
+        "role": "admin"
+    },
+    {
+        "name": "Sarah",
+        "last_name": "Brown",
+        "email": "sarah.brown@example.com",
+        "password": "$2a$10$WgHWtDtxmnrp2b0p/HgxW.J6x4mCXHA8ke.AO5bzTeHQ5L21WTq8q",
+        "role": "customer"
+    }
+]);
