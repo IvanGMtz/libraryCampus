@@ -4,6 +4,7 @@ import { useAuth } from './context/AuthContext';
 
 
 export default function BookCard({ book, index }) {
+  
   const { deleteBook } = useBooks();
   const { isEmployee } = useAuth();
 
