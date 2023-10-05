@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { createBookRequest, getBooksRequest, deleteBookRequest, updateBookRequest } from "../../../request/book";
+import { createBookRequest, getBooksRequest, deleteBookRequest, updateBookRequest, getBooksStockRequest } from "../../../request/book";
 
 const BookContext = createContext();
 
@@ -14,12 +14,22 @@ export const useBooks = () => {
 
 export function BookProvider({ children }) {
   const [books, setBooks] = useState([]);
+  const [booksStock, setBooksStock] = useState([]);
   const [errors, setErrors] = useState([]);
 
   const getBooks = async () => {
     try {
       const res = await getBooksRequest();
       setBooks(res.data);
+    } catch (error) {
+      setErrors(error);
+    }
+  };
+
+  const getBooksStock = async () => {
+    try {
+      const res = await getBooksStockRequest();
+      setBooksStock(res.data);
     } catch (error) {
       setErrors(error);
     }
@@ -52,7 +62,7 @@ export function BookProvider({ children }) {
   };
 
   return (
-    <BookContext.Provider value={{ books, errors, createBook, getBooks, deleteBook, updateBook }}>
+    <BookContext.Provider value={{ books, booksStock, errors, createBook, getBooks, deleteBook, updateBook, getBooksStock }}>
       {children}
     </BookContext.Provider>
   );
