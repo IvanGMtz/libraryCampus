@@ -40,8 +40,8 @@ function SignUp() {
                 <img className="dark:hidden" src={LogoDark} alt="Logo" />
               </Link>
               <p className="2xl:px-20">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                suspendisse.
+              ¡Bienvenido a nuestra Librería Digital de Campusland! Regístrate para explorar nuestro amplio catálogo de libros y comenzar tu viaje de lectura. 
+              Descubre nuevas historias, aprende cosas nuevas y comparte tus experiencias con otros amantes de la lectura.
               </p>
 
               <span className="mt-15 inline-block">

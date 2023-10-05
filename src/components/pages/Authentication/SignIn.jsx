@@ -33,8 +33,8 @@ function SignIn() {
               </Link>
 
               <p className="2xl:px-20">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                suspendisse.
+              ¡Hola de nuevo! Por favor, inicia sesión para acceder a tu cuenta y continuar explorando nuestra librería. 
+              Si eres nuevo aquí, regístrate para unirte a nuestra comunidad de lectores y descubrir un mundo de libros fascinantes.
               </p>
 
               <span className="mt-15 inline-block">

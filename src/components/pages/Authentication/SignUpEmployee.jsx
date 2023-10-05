@@ -35,8 +35,9 @@ function SignUpEmployee() {
                 <img className="dark:hidden" src={LogoDark} alt="Logo" />
               </Link>
               <p className="2xl:px-20">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                suspendisse.
+                Bienvenido, administrador de la Librería Digital.
+                Este es tu espacio exclusivo para gestionar nuestra biblioteca y asegurarte de que nuestros lectores tengan acceso a los libros que aman.
+                Agrega nuevos libros, actualiza información y supervisa el stock. Gracias por ser parte de nuestro equipo.
               </p>
 
               <span className="mt-15 inline-block">
@@ -48,7 +49,7 @@ function SignUpEmployee() {
           <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
-                Sign Up to Employees
+                Employee enrollment
               </h2>
 
               {RegisterErrors.map((error, i) => (

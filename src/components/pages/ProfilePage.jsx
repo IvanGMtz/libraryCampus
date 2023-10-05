@@ -97,13 +97,13 @@ function ProfilePage() {
                 <span className="font-semibold text-black dark:text-white">
                   259
                 </span>
-                <span className="text-sm">Posts</span>
+                <span className="text-sm">Commits</span>
               </div>
               <div className="flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row">
                 <span className="font-semibold text-black dark:text-white">
-                  129K
+                  29
                 </span>
-                <span className="text-sm">Followers</span>
+                <span className="text-sm">Repositories</span>
               </div>
               <div className="flex flex-col items-center justify-center gap-1 px-4 xsm:flex-row">
                 <span className="font-semibold text-black dark:text-white">
@@ -118,11 +118,9 @@ function ProfilePage() {
                 About Me
               </h4>
               <p className="mt-4.5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque posuere fermentum urna, eu condimentum mauris
-                tempus ut. Donec fermentum blandit aliquet. Etiam dictum dapibus
-                ultricies. Sed vel aliquet libero. Nunc a augue fermentum,
-                pharetra ligula sed, aliquam lacus.
+                I'm a Campusland Camper, which means I'm on an exciting learning journey in the world of programming.
+                Here, at Campusland, curiosity and a desire for growth are what bind us together.
+                I'm part of a community of passionate students looking to acquire cutting-edge technical skills and prepare for a successful career in software development.
               </p>
             </div>
 
